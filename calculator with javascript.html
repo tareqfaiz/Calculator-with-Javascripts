@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T@req's Calculator</title>
+    <style>
+
+         .main {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            display: block;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(131, 152, 194); /* Light background color */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent scrollbars */
+            
+         }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Light background color */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        h1 {
+            margin: 20px 0; /* Space around heading */
+            font-size: 2em; /* Initial font size */
+            color: green; /* Green color for heading */
+            font-weight: bold; /* Bold text */
+            text-align: center; /* Center the heading */
+            animation: pulse 2s infinite; /* Pulsating animation */
+            background-color: yellow; /* Yellow background for heading */
+            padding: 10px; /* Padding around the text */
+            border-radius: 50px; /* Rounded corners for background */
+            display: block; /* Make sure it's block to have background */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .calculator {
+            background: rgb(131, 152, 194); /* Background color for calculator */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            width: calc(100vw - 8px); /* Full width minus margin */
+            height: calc(100vh - 200px); /* Ensure enough height for display and buttons */
+            display: flex; /* Flexbox for layout */
+            flex-direction: column; /* Column layout */
+            justify-content: center; /* Center content vertically */
+            box-sizing: border-box; /* Include border in total size */
+            padding: 10px; 
+        }
+
+        input[type="text"] {
+            width: 100%; /* Full width for the display */
+            height: 250px; /* Height of display */
+            padding: 0 10px; /* Horizontal padding for the display */
+            font-size: 88px; /* Increased font size */
+            border: 1px solid #ddd; /* Border for display */
+            border-radius: 5px; /* Rounded corners for display */
+            margin-bottom: 10px; /* Space below the display */
+            background-color: black; /* Background color for the display */
+            color: white; /* Text color for display */
+            text-align: right; /* Text alignment */
+            box-sizing: border-box; /* Include padding and border in total size */
+        }
+
+        .button-container {
+            display: flex; /* Flexbox for button layout */
+            flex-wrap: wrap; /* Allow buttons to wrap */
+            justify-content: center; /* Center buttons */
+        }
+
+        button {
+            width: calc(25% - 8px); /* 4 buttons in a row with a total margin of 4px */
+            height: 90px; /* Height for buttons */
+            font-size: 44px; /* Font size for buttons */
+            margin: 4px; /* 4px margin around buttons */
+            cursor: pointer; /* Pointer cursor on hover */
+            border: none; /* No border */
+            background-color: #009688; /* Button color */
+            color: white; /* Text color for buttons */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s; /* Button hover effect */
+            box-sizing: border-box; /* Include margin in the total size */
+        }
+
+        button:hover {
+            background-color: #00796b; /* Darker color on hover */
+        }
+
+        
+
+        @media (max-width: 600px) {
+            input[type="text"] {
+                font-size: 32px; /* Smaller font on small screens */
+                height: 60px; /* Adjusted height */
+            }
+            button {
+                height: 50px; /* Adjusted height for buttons */
+                font-size: 18px; /* Adjusted font size */
+                width: calc(25% - 8px); /* Adjusted width with margin */
+            }
+            h1 {
+                font-size: 1.5em; /* Adjusted font size for smaller screens */
+            }
+
+            input[type="text"] {
+            width: 100%; /* Full width for the display */
+            height: 400px;
+            font-size: 88px;
+        }
+
+
+        @media (max-width: 230px) {
+            h1 {
+                display: none; /* Hide heading on very small screens */
+            }
+            .calculator {
+                height: calc(100vh - 20px); /* Less height for very small displays */
+            }
+            input[type="text"] {
+                font-size: 36px; /* Adjusted font size for very small displays */
+                height: 90px; /* Adjusted display height */
+            }
+            button {
+                height: 30px; /* Adjusted button height */
+                font-size: 14px; /* Adjusted button font size */
+            }
+        }
+
+        @media (max-height: 180px) {
+            input[type="text"] {
+                font-size: 16px; /* Adjusted font size for very small displays */
+                height: 30px; /* Adjusted display height */
+            }
+            button {
+                height: 30px; /* Adjusted button height */
+                font-size: 14px; /* Adjusted button font size */
+            }
+        }
+    </style>
+</head>
+<body>
+   <div class="main">
+   <div>
+    <h1>T@req's Calculator</h1>
+   </div>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="button-container">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToDisplay('+')">+</button>
+        </div>
+    </div>
+   </div>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+                setTimeout(clearDisplay, 1500);
+            }
+        }
+    </script>
+</body>
+</html>
